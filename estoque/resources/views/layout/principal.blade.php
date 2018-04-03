@@ -21,18 +21,21 @@ and open the template in the editor.
                     </div>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/produtos">Listagem</a></li>
+                        <li><a href="{{action('ProdutoController@lista')}}">Listagem</a></li>
+                        <li><a href="{{action('ProdutoController@novo')}}">Novo</a></li>
                     </ul>
 
                 </div>
             </nav>
-
+            <p>
             @yield('conteudo')
-
+            </p>
+            
+            
+            
             <footer class="footer">
                 <p>© Curso de Laravel do Alura.</p>
             </footer>
-
         </div>
     </body>
 </html>

@@ -7,6 +7,8 @@ and open the template in the editor.
 @extends('layout.principal')
 @section('conteudo')
 <h1>Listagem de produtos com Laravel</h1>
+
+
 <table class="table table-striped table-bordered table-hover">
 
     @if(empty($produtos))
@@ -35,4 +37,11 @@ and open the template in the editor.
         Um ou menos itens no estoque
     </span>
 </h8>
+
+@if(old('nome'))
+<div class="alert alert-success">
+    <strong>Sucesso!</strong> O produto {{ old('nome') }}  foi adicionado.
+</div>
+@endif
+
 @stop
