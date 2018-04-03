@@ -1,0 +1,47 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 02-Apr-2018, 23:54:20
+    Author     : joao
+*/
+
+nav.navbar.navbar-default{
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    margin-top: 10px;
+}
+
+nav.navbar.navbar-default a {
+    color: white;
+}
+
+li p.navbar-text, a.navbar-brand {
+    color: white!important;
+    font-weight: bolder;
+}
+
+footer.footer {
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    margin-top: 75px;
+    color: white;
+    border-radius: 5px;
+}
+
+footer.footer p {
+    padding: 10px;
+}
+
+.pull-right{
+    float: right;
+    background-color: #dc3545;
+    font-size: smaller;
+    font-weight: bold;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+
+}
