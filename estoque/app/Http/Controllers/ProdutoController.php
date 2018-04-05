@@ -15,41 +15,65 @@ namespace estoque\Http\Controllers;
  */
 use Illuminate\Support\Facades\DB;
 use Request;
+use estoque\Produtos;
 
 class ProdutoController extends Controller {
 
     public function lista() {
-        $produtos = DB::select('select * from produtos');
+        $produtos = Produtos::all();
         return view('produto.listagem')->with('produtos', $produtos);
     }
 
-    public function mostra() {
-        $id = Request::route('id');
-        $produto = DB::select('select * from produtos where id = ?', [$id]);
+    public function mostra($id) {
+        $produto = Produtos::find($id);
+
         if (empty($produto)) {
             return "Esse produto não existe";
         }
-        return view('produto.detalhes')->with('p', $produto[0]);
+
+        return view('produto.detalhes')->with('p', $produto);
     }
 
-    public function novo() {
-        return view('produto.formulario');
+    public function remove($id) {
+        $produto = Produtos::find($id);
+        if (empty($produto)) {
+            return "Esse produto não existe";
+        }
+        $produto->delete();
+        return redirect()
+                        ->action('ProdutoController@lista');
     }
 
-    public function adiciona() {
+    public function altera($id) {
+        $produto = Produtos::find($id);
+        if (empty($produto)) {
+            return "Esse produto não existe";
+        }
 
-        $nome = Request::input('nome');
-        $descricao = Request::input('descricao');
-        $valor = Request::input('valor');
-        $quantidade = Request::input('quantidade');
+        return view('produto.formulario')->with('p', $produto);
+    }
 
+    public function atualiza($id) {
+        $produto = Produtos::findOrFail($id);
+        $produto->update(Request::all());
 
-        DB::insert('insert into produtos values (null, ?, ?, ?, ?)', array($nome, $valor, $descricao, $quantidade));
         return redirect()
                         ->action('ProdutoController@lista')
                         ->withInput(Request::only('nome'));
     }
 
-    
+    public function adiciona() {
+        $params = Request::all();
+        $produto = new Produtos($params);
+
+        $produto->save();
+        return redirect()
+                        ->action('ProdutoController@lista')
+                        ->withInput(Request::only('nome'));
+    }
+
+    public function novo() {
+        return view('produto.formulario');
+    }
 
 }

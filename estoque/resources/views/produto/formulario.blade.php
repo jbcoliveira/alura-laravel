@@ -7,27 +7,35 @@ and open the template in the editor.
 @extends('layout.principal')
 @section('conteudo')
 
-<h1>Novo produto</h1>
 
-<form action="/produtos/adiciona" method="post">
+@if(isset($p))
+    <h1>Alterar produto</h1>
+    <form action="/produtos/atualiza/{{$p->id}}" method="post">
+@else
+    <h1>Novo produto</h1>
+    <form action="/produtos/adiciona" method="post">   
+@endif
+
+
     
   <input type="hidden"  name="_token" value="{{{ csrf_token() }}}" />
   
+  
   <div class="form-group">
     <label>Nome</label>
-    <input name="nome" class="form-control"/>
+    <input name="nome" class="form-control" value="{{ isset($p) ? $p->nome : old('nome')}}"/>
   </div>
   <div class="form-group">
     <label>Descricao</label>
-    <input name="descricao" class="form-control"/>
+    <input name="descricao" class="form-control" value="{{ isset($p) ? $p->descricao : old('descricao')}}"/>
   </div>
   <div class="form-group">
     <label>Valor</label>
-    <input name="valor" class="form-control"/>
+    <input name="valor" class="form-control" value="{{ isset($p) ? $p->valor : old('valor')}}"/>
   </div>
   <div class="form-group">
     <label>Quantidade</label>
-    <input type="number" name="quantidade" class="form-control"/>
+    <input type="number" name="quantidade" class="form-control" value="{{ isset($p) ? $p->quantidade : old('quantidade')}}"/>
   </div>
   <button type="submit" 
     class="btn btn-primary btn-block">Submit</button>

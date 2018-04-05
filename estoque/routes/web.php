@@ -30,5 +30,14 @@ Route::get('/produtos/novo', 'ProdutoController@novo');
 //Rotina para gravar o produto
 Route::post('/produtos/adiciona', 'ProdutoController@adiciona');
 
+//Rotina para remover o produto
+Route::get('/produtos/remove/{id}', 'ProdutoController@remove');
+
+//Rotina para alterar o produto
+Route::get('/produtos/altera/{id}', 'ProdutoController@altera')
+        ->where('id', '[0-9]+');
+
+//Rotina para alterar o produto
+Route::post('/produtos/atualiza/{id}', 'ProdutoController@atualiza');
 
 //Route::get('/produtos/json', 'ProdutoController@listaJson');

@@ -11,23 +11,34 @@ and open the template in the editor.
 
 <table class="table table-striped table-bordered table-hover">
 
-    @if(empty($produtos))
-    <div class="alert alert-danger">
+    @if($produtos)
+        @foreach ($produtos as $p)
+
+        <tr class="{{$p->quantidade<=1 ? 'alert alert-danger' : '' }}">
+            <td>{{ $p->nome }}</td>
+            <td>{{ $p->valor }}</td>
+            <td>{{ $p->descricao }}</td>
+            <td>{{ $p->quantidade }}</td>
+            <td><a href="{{action('ProdutoController@mostra', $p->id)}}">
+                    <img src="/image/icon/search.svg" alt="icon name">
+                </a>
+            </td>
+            <td><a href="{{action('ProdutoController@altera', $p->id)}}">
+                    <img src="/image/icon/pencil.svg" alt="icon name">
+                </a>
+            </td>
+            <td><a href="{{action('ProdutoController@remove', $p->id)}}">
+                    <img src="/image/icon/trashcan.svg" alt="icon name">
+                </a>
+            </td>
+        </tr>
+        @endforeach
+    @else
+    <div class="alert alert-danger">aa
         Você não tem nenhum produto cadastrado.
     </div>
-    @else
-    @foreach ($produtos as $p)
-    <tr class="{{$p->quantidade<=1 ? 'alert alert-danger' : '' }}">
-        <td>{{ $p->nome }}</td>
-        <td>{{ $p->valor }}</td>
-        <td>{{ $p->descricao }}</td>
-        <td>{{ $p->quantidade }}</td>
-        <td><a href="/produtos/mostra/{{ $p->id }}">
-                <img src="/image/icon/search.svg" alt="icon name">
-            </a>
-        </td>
-    </tr>
-    @endforeach
+    
+    
     @endif
 
 
@@ -40,7 +51,7 @@ and open the template in the editor.
 
 @if(old('nome'))
 <div class="alert alert-success">
-    <strong>Sucesso!</strong> O produto {{ old('nome') }}  foi adicionado.
+    <strong>Sucesso!</strong> O produto {{ old('nome') }}  foi adicionado/alterado.
 </div>
 @endif
 
