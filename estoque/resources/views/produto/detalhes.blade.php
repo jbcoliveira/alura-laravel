@@ -16,6 +16,9 @@ and open the template in the editor.
         <b>Descrição:</b> {{$p->descricao or 'nenhuma descrição informada'}} 
     </li>
     <li>
+        <b>Tamanho:</b> {{ $p->tamanho }}
+    </li>
+    <li>
         <b>Quantidade em estoque:</b> {{ $p->quantidade }}
     </li>
 </ul>

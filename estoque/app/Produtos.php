@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Produtos extends Model
 {   
     protected $table = 'produtos'; //Nao é necessario neste caso
-    protected $fillable = array('nome','descricao','quantidade','valor');
+    protected $fillable = array('nome','descricao','quantidade','valor','tamanho');
     protected $guarded = array('id');
 
     public $timestamps = false;

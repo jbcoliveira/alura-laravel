@@ -8,16 +8,25 @@ and open the template in the editor.
 @section('conteudo')
 
 
-@if(isset($p))
-    <h1>Alterar produto</h1>
-    <form action="/produtos/atualiza/{{$p->id}}" method="post">
-@else
-    <h1>Novo produto</h1>
-    <form action="/produtos/adiciona" method="post">   
-@endif
-
-
+    @if ($errors->any())
+        <div class="alert alert-danger">
+        <ul>
+          @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+          @endforeach
+        </ul>
+        </div>
+    @endif    
     
+    @if(isset($p))
+        <h1>Alterar produto</h1>
+        <form action="/produtos/atualiza/{{$p->id}}" method="post">
+    @else
+        <h1>Novo produto</h1>
+        <form action="/produtos/adiciona" method="post">   
+    @endif
+        
+   
   <input type="hidden"  name="_token" value="{{{ csrf_token() }}}" />
   
   
@@ -33,6 +42,11 @@ and open the template in the editor.
     <label>Valor</label>
     <input name="valor" class="form-control" value="{{ isset($p) ? $p->valor : old('valor')}}"/>
   </div>
+  
+  <div class="form-group">
+    <label>Tamanho</label>
+    <input name="tamanho" class="form-control" value="{{ isset($p) ? $p->tamanho : old('tamanho')}}"/>
+  </div>  
   <div class="form-group">
     <label>Quantidade</label>
     <input type="number" name="quantidade" class="form-control" value="{{ isset($p) ? $p->quantidade : old('quantidade')}}"/>

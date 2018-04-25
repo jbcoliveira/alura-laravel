@@ -13,11 +13,11 @@ and open the template in the editor.
 
     @if($produtos)
         @foreach ($produtos as $p)
-
         <tr class="{{$p->quantidade<=1 ? 'alert alert-danger' : '' }}">
             <td>{{ $p->nome }}</td>
             <td>{{ $p->valor }}</td>
             <td>{{ $p->descricao }}</td>
+            <td>{{ $p->tamanho }}</td>
             <td>{{ $p->quantidade }}</td>
             <td><a href="{{action('ProdutoController@mostra', $p->id)}}">
                     <img src="/image/icon/search.svg" alt="icon name">
@@ -34,7 +34,7 @@ and open the template in the editor.
         </tr>
         @endforeach
     @else
-    <div class="alert alert-danger">aa
+    <div class="alert alert-danger">
         Você não tem nenhum produto cadastrado.
     </div>
     

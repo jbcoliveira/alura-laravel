@@ -11,10 +11,17 @@
   |
  */
 
-Route::get('/', function () {
-    //return view('welcome');
-    return '<h1>Página Inicial</h1';
-});
+Route::get('/', 'ProdutoController@lista');
+
+//Auth
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+//Login
+Route::get('/login', 'LoginController@form');
+
 
 //Lista Todos os produtos
 Route::get('/produtos', 'ProdutoController@lista');
@@ -40,4 +47,4 @@ Route::get('/produtos/altera/{id}', 'ProdutoController@altera')
 //Rotina para alterar o produto
 Route::post('/produtos/atualiza/{id}', 'ProdutoController@atualiza');
 
-//Route::get('/produtos/json', 'ProdutoController@listaJson');
+
