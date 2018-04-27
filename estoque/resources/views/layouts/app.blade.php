@@ -16,7 +16,8 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
-
+    <link href="/css/app.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/custom.css" rel="stylesheet"type="text/css"/>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -44,6 +45,19 @@
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @else
+
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Ações <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{action('ProdutoController@lista')}}">Listagem</a>
+                                    <a class="dropdown-item" href="{{action('ProdutoController@novo')}}">Novo</a>
+                                   
+                                </div>
+                            </li>
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -61,6 +75,9 @@
                                     </form>
                                 </div>
                             </li>
+                            
+                            
+                            
                         @endguest
                     </ul>
                 </div>
@@ -68,8 +85,16 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            
+                @yield('content')
+            
+                @yield('conteudoLogado')
+            
         </main>
+        
+        <footer class="footer">
+            <p>© Curso de Laravel do Alura.</p>
+        </footer>
     </div>
 </body>
 </html>

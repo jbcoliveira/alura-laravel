@@ -16,11 +16,11 @@ Route::get('/', 'ProdutoController@lista');
 //Auth
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index');
 
 
 //Login
-Route::get('/login', 'LoginController@form');
+//Route::get('/login', 'LoginController@login');
 
 
 //Lista Todos os produtos
