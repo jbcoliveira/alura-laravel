@@ -16,6 +16,7 @@ namespace estoque\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Request;
 use estoque\Produtos;
+use estoque\Categoria;
 use estoque\Http\Requests\ProdutosRequest;
 
 class ProdutoController extends Controller {
@@ -23,7 +24,7 @@ class ProdutoController extends Controller {
     public function __construct()
     {
         $this->middleware('auth', 
-            ['only' => ['adiciona', 'remove','atualiza','altera']]);
+            ['only' => ['adiciona', 'novo','remove','atualiza','altera']]);
     }
 
     public function lista() {
@@ -80,7 +81,7 @@ class ProdutoController extends Controller {
     }
 
     public function novo() {
-        return view('produto.formulario');
+        return view('produto.formulario')->with('categorias', Categoria::all());;
     }
 
 }

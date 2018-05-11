@@ -17,6 +17,7 @@ and open the template in the editor.
             <td>{{ $p->nome }}</td>
             <td>{{ $p->valor }}</td>
             <td>{{ $p->descricao }}</td>
+            <td>{{ $p->categoria->nome }}</td>
             <td>{{ $p->tamanho }}</td>
             <td>{{ $p->quantidade }}</td>
             <td><a href="{{action('ProdutoController@mostra', $p->id)}}">

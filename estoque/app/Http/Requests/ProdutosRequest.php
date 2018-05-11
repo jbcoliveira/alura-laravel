@@ -5,11 +5,11 @@ namespace estoque\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProdutosRequest extends FormRequest {
-
+/*
     public function __construct() {
         $this->middleware('nosso-middleware', ['only' => ['adiciona', 'remove','altera']]);
     }
-
+*/
     /**
      * Determine if the user is authorized to make this request.
      *
