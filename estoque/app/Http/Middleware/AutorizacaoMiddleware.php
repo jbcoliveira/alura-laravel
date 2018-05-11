@@ -14,8 +14,8 @@ class AutorizacaoMiddleware {
      * @return mixed
      */
     public function handle($request, Closure $next) {
-        if (!$request->is('auth/login') && \Auth::guest()) {
-            return redirect('/auth/login');
+        if (!$request->is('login') && \Auth::guest()) {
+            return redirect('login');
         }
         return $next($request);
     }

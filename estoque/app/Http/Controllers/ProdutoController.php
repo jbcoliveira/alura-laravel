@@ -19,6 +19,12 @@ use estoque\Produtos;
 use estoque\Http\Requests\ProdutosRequest;
 
 class ProdutoController extends Controller {
+    
+    public function __construct()
+    {
+        $this->middleware('auth', 
+            ['only' => ['adiciona', 'remove','atualiza','altera']]);
+    }
 
     public function lista() {
         $produtos = Produtos::all();
